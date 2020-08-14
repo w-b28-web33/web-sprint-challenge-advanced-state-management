@@ -1,32 +1,25 @@
-import axios from 'axios';
+import axios from 'axios'; 
 
-export const FETCH_SMURFS = "FETCH_SMURFS" // as GET
-export const ADD_SMURF = "ADD_SMURF"      // as POST
 
-export const addSmurf = apiData => {
-    return {
-        type: ADD_SMURF,
-        payload: apiData
+
+export const SMURF_SUCCESS = "SMURF_SUCCESS"; 
+export const SMURF_FAILURE = "SMURF_FAILURE"; 
+export const ADD_SMURF = "ADD_SMURF"; 
+
+
+export const fetchSmurfs = () => (dispatch) => {
+    axios.get('http://localhost:3333/smurfs')
+        .then(res => {
+            dispatch({ type: SMURF_SUCCESS, payload: res.data })
+        })
+        .catch(err => dispatch({ type: SMURF_FAILURE, payload: err.message}))
+}
+
+export const addSmurf = (smurf) => (dispatch) => {
+   
+    axios.post('http://localhost:3333/smurfs', smurf)
+        .then(res => {
+            dispatch({ type: ADD_SMURF, payload: res.data })
+        })
+        .catch(err => dispatch({ type: SMURF_FAILURE, payload: err.message }))
     }
-};
-
-export const fetchSmurfs = _ => dispatch => {
-    axios   
-        .get("http://localhost:3333/smurfs")
-        .then( response => {
-            console.log("Fetching data from api", response.data)
-            })
-        .catch(err => console.error(err.message))
-    }
-
-
-    export const postNewSmurf = apiData => dispatch => {
-        axios
-          .post("http://localhost:3333/smurfs", apiData)
-          .then(
-            console.log(smurfData)
-          )
-      
-      }
-      
-      axios.post()

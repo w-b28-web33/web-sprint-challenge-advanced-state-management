@@ -1,26 +1,31 @@
-// import actions here
-import {
-    ADD_SMURF,
-    FETCH_SMURFS
-  } from "../actions/index";
+import { SMURF_SUCCESS, SMURF_FAILURE, ADD_SMURF } from '../actions/index'
 
+// step 1. Set up the state! 
 const initialState = {
-    smurfs: [] 
+    smurfs: [],  
+    error: "", 
 }
 
-export const rootReducer = (state =initialState, action) => {
+export const rootReducer = (state=initialState, action) => {
     switch(action.type) {
-        case ADD_SMURF: 
+        case SMURF_SUCCESS: 
             return {
-                ...state
+                ...state, 
+                loading: false, 
+                smurfs: action.payload
             }
-        case FETCH_SMURFS:
+        case SMURF_FAILURE: 
+            return {
+                ...state,
+                error: action.payload
+            }
+        case ADD_SMURF: 
             return {
                 ...state,
                 smurfs: action.payload
             }
-        default:
-            return state;
-    }
 
-};
+            default:
+                return state
+    }
+}
