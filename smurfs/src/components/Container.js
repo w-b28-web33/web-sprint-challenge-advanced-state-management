@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import SmurfCard from './SmurfCard';
-// import { addSmurf } from './actions/index'
+import {addSmurf} from '../actions'
+
 
 const Container = props => {
     console.log(props.name)
     return (
         <div>
-            {props.smurfs.map(smurf => {
-            return <SmurfCard smurf={smurf.name} age ={smurf.age} height={smurf.height} key={smurf.id} />
+            {props.smurfs.map(user => { console.log(user.name)
+            return <SmurfCard smurf={props.user.name} age ={props.user.age} height={props.user.height} key={props.user.id} />
          })}
         </div>
     )
@@ -19,4 +20,4 @@ const mapStateToProps = state => {
     }
   }
   
-  export default connect(mapStateToProps, { })(Container)
+  export default connect(mapStateToProps, { addSmurf })(Container)

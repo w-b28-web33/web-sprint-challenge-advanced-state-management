@@ -1,7 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const SmurfCard = props => {
-    const { name, age, height, id }= props
+function SmurfCard(props) {
+    const { name, age, height, id } = props.user
 
 
     return (
@@ -15,4 +16,5 @@ const SmurfCard = props => {
     )
 }
 
-export default SmurfCard
+
+export default connect(null, {})(SmurfCard)

@@ -39,7 +39,10 @@ const Form = props => {
     </form>
   )
 }
+const mapStateToProps = state => {
+  return state
+}
 
 
 
-export default connect(null, { addSmurf })(Form)
+export default connect(mapStateToProps, { addSmurf })(Form)
