@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Form from './Form';
-import SmurfCard from './SmurfCard';
+
 import Container from './Container';
 import { fetchSmurfs } from '../actions/index';
 import { connect } from 'react-redux';
