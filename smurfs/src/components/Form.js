@@ -1,48 +1,67 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { addSmurf } from '../actions';
+import { postSmurf,  onNameInputChange, 
+  onAgeInputChange,onHeightInputChange } from '../actions/index';
 
-const Form = props => {
+const Form = ({values, postSmurf, onNameInputChange, 
+        onAgeInputChange,onHeightInputChange 
+        }) => {
     
-  const [smurf, setSmurf] = useState({
-    name: "",
-    age: "",
-    height: "",
-    id: ""
-  })
-
- 
-
-  const handleChange = e => {
-    setSmurf({
-      ...smurf,
-      [e.target.name]: e.target.value
-    })
-  }
-  const handleSubmit = e => {
-    e.preventDefault()
-    props.addSmurf(smurf)
-    setSmurf({
-      name: "",
-      age: "",
-      height: "",
-      id: ""
-    })
-  }
+  const onSubmit = e => {
+    e.preventDefault();
+    postSmurf(values);
+    // setSmurf({
+    //   name: "",
+    //   age: "",
+    //   height: "",
+    //   id: ""
+    // })
+  };
 
   return(
-    <form onSubmit={handleSubmit}>
-      <input name='name' placeholder='name' onChange={handleChange} value={props.name}/>
-      <input name='age' placeholder='age' onChange={handleChange} value={props.age}/>
-      <input name='height' placeholder='height' onChange={handleChange} value={props.height}/>
-      <button type='submit'> Add Smurf </button>
+    <form className="form">
+      <h2>Smurf Town USA!</h2>
+
+      <input 
+        type='text'
+        name='name' 
+        placeholder="'What is your Smurf's Name?"
+        onChange={onNameInputChange} 
+        value={values.name}
+      />
+
+      <input 
+        type='text'
+        name='age' 
+        placeholder="Enter Your Smurf's age!" 
+        onChange={onAgeInputChange} 
+        value={values.age}
+      />
+      <input 
+        type='text'
+        name='height' 
+        placeholder='How Tall is Your Smurf?' 
+        onChange={onHeightInputChange} 
+        value={values.height}
+      />
+      <button onClick={onSubmit}> Add Your New Smurf </button>
     </form>
-  )
-}
+  );
+};
+
 const mapStateToProps = state => {
-  return state
-}
+  return {
+    values: state.formValues
+  };
+};
 
 
 
-export default connect(mapStateToProps, { addSmurf })(Form)
+export default connect(mapStateToProps, { onNameInputChange, onAgeInputChange, onHeightInputChange, postSmurf })(Form);
+
+// const [smurf, setSmurf] = useState({
+//   name: "",
+//   age: "",
+//   height: "",
+//   id: ""
+// })

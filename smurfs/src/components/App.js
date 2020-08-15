@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Form from './Form';
 
 import Container from './Container';
 import { fetchSmurfs } from '../actions/index';
 import { connect } from 'react-redux';
 import "./App.css";
 import SmurfCard from "./SmurfCard";
+import Form from "./components/Form";
 
 
 
@@ -23,8 +23,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>SMURFS! W/Redux</h1>
-        <Form />
-        <SmurfCard />
+       <Form />
       </div>
     );
   }
