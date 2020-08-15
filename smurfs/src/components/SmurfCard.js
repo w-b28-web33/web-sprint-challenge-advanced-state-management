@@ -1,20 +1,19 @@
-// import React from 'react';
-// import { connect } from 'react-redux';
+import React from 'react';
+import { connect } from 'react-redux';
 
-// function SmurfCard(props) {
-//     const { name, age, height, id } = props.user
+const SmurfCard = props => {
+   
 
 
-//     return (
-//         <div>
-//             <h2> {name} </h2>
-//             <p> {age} </p>
-//             <p> {height} </p>
-//             <p> {id} </p>
-//         </div>
+    return (
+        <div>
+            <h2>{props.smurf.name}</h2>
+            <p>Age: {props.smurf.age}</p>           
+            <p>Height: {props.smurf.height}</p>
+        </div>
         
-//     )
-// }
+    )
+}
 
 
-// export default connect(null, {})(SmurfCard)
+export default SmurfCard;

@@ -1,35 +1,37 @@
 import React, { Component } from "react";
-
-// import Container from './Container';
-import { fetchSmurfs } from '../actions/index';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'; 
 import "./App.css";
-// import SmurfCard from "./SmurfCard";
-import Form from "./Form";
+import { fetchSmurfs } from '../actions/index'; 
+import SmurfContainer from '../components/Container'; 
+import SmurfForm from '../components/Form'; 
 
+// app will be used to set up state and get the initial smurf data, and then render components with that data
+// step 4. we will need to getSmurfs and recieve our data -> make an actions folder
+// step 6. connect app to store
+// step 7. see SmurfContainer.js 
+// step 10. Add a form to add a new smurf! See SmurfForm.js
 
 
 class App extends Component {
- 
 
-   componentDidMount() {
-     console.log ("is mounted")
-     this.props.fetchSmurfs()
-   }
-  
+
+  componentDidMount() {
+    this.props.fetchSmurfs(); 
+  }
 
   render() {
-    // console.log(this.props)
     return (
       <div className="App">
-        <h1>SMURFS! W/Redux</h1>
-       <Form />
+        <h2>Smurfbook</h2>
+        <SmurfContainer /> 
+        <SmurfForm /> 
       </div>
     );
   }
 }
-  const mapStateToProps = state => {
-    return state
+
+const mapStateToProps = (state) => {
+  return state;
 }
 
 export default connect(mapStateToProps, { fetchSmurfs })(App);

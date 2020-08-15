@@ -1,15 +1,10 @@
-import { FETCH_SMURFS_START, 
-        FETCH_SMURFS_SUCCESS, 
-        POST_SMURF_START, 
-        POST_SMURF_SUCCESS, 
-        SMURF_FAILURE 
-} from '../actions/index';
+import { SMURF_LOADING, SMURF_SUCCESS, SMURF_FAILURE, ADD_SMURF } from '../actions/index';
 
 // step 1. Set up the state! 
 const initialState = {
     smurfs: [],  
     error: "" ,
-    isFetching: false,
+    loading: false,
     formValues: {
         name: '',
         age: '',
@@ -18,38 +13,34 @@ const initialState = {
     }
 }
 
-export const rootReducer = ( state = initialState, action) => {
+export const rootReducer = (state=initialState, action) => {
     switch(action.type) {
-        case FETCH_SMURFS_START: 
+        case SMURF_LOADING:
             return {
                 ...state, 
-                isFetching: true
-            };
-        case FETCH_SMURFS_SUCCESS:
+                loading: true, 
+            }
+        case SMURF_SUCCESS: 
+            return {
+                ...state, 
+                loading: false, 
+                smurfs: action.payload
+            }
+        case SMURF_FAILURE: 
             return {
                 ...state,
-                isFetching: false,
-                smurfs: [...state.smurfs, ...action.payload]
-            };
-            case POST_SMURF_START:
+                loading: false, 
+                error: action.payload
+            }
+        case ADD_SMURF: 
             return {
                 ...state,
-                smurfs: [...state.smurfs, state.formValues]
-            };
-            case POST_SMURF_SUCCESS:
-                return {
-                    ...state,
-                    postSuccess: action.payload
-                };
-            case SMURF_FAILURE: 
-                return {
-                    ...state,
-                    error: action.payload
-                };           
-            default:
-                return state
-    };
-};
+                loading: false, 
+                smurfs: action.payload
+            }
 
-export default rootReducer;
+            default:
+                return state; 
+    }
+}
 
