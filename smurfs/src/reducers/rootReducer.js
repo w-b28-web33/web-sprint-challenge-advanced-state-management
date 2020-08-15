@@ -34,7 +34,7 @@ export const rootReducer = ( state = initialState, action) => {
             case POST_SMURF_START:
             return {
                 ...state,
-                smurfList: [...state.smurfList, state.formValues]
+                smurfs: [...state.smurfs, state.formValues]
             };
             case POST_SMURF_SUCCESS:
                 return {

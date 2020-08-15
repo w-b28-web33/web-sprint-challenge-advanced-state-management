@@ -10,12 +10,6 @@ const Form = ({values, postSmurf, onNameInputChange,
   const onSubmit = e => {
     e.preventDefault();
     postSmurf(values);
-    // setSmurf({
-    //   name: "",
-    //   age: "",
-    //   height: "",
-    //   id: ""
-    // })
   };
 
   return(
@@ -25,23 +19,23 @@ const Form = ({values, postSmurf, onNameInputChange,
       <input 
         type='text'
         name='name' 
-        placeholder="'What is your Smurf's Name?"
-        onChange={onNameInputChange} 
+        placeholder="Smurf's Name?"
+        onChange={(e)=> onNameInputChange(e.target.value)} 
         value={values.name}
       />
 
       <input 
         type='text'
         name='age' 
-        placeholder="Enter Your Smurf's age!" 
-        onChange={onAgeInputChange} 
+        placeholder="Smurf's age!" 
+        onChange={(e)=> onAgeInputChange(e.target.value)} 
         value={values.age}
       />
       <input 
         type='text'
         name='height' 
-        placeholder='How Tall is Your Smurf?' 
-        onChange={onHeightInputChange} 
+        placeholder="'Smurf's Height?'" 
+        onChange={(e)=> onHeightInputChange(e.target.value)} 
         value={values.height}
       />
       <button onClick={onSubmit}> Add Your New Smurf </button>
@@ -50,6 +44,7 @@ const Form = ({values, postSmurf, onNameInputChange,
 };
 
 const mapStateToProps = state => {
+  console.log(state.formValues)
   return {
     values: state.formValues
   };
@@ -57,7 +52,8 @@ const mapStateToProps = state => {
 
 
 
-export default connect(mapStateToProps, { onNameInputChange, onAgeInputChange, onHeightInputChange, postSmurf })(Form);
+export default connect(mapStateToProps, 
+  { onNameInputChange, onAgeInputChange, onHeightInputChange, postSmurf })(Form);
 
 // const [smurf, setSmurf] = useState({
 //   name: "",
