@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { postSmurf } from '../actions/index';
+
 
 const Form = props => {
     
@@ -12,16 +11,21 @@ const Form = props => {
   });
 
 
-const handleChange = e => {
+const handleChanges = e => {
   setSmurf({...smurf,
     [e.target.name]: e.target.value
   }); 
 }
 
 const handleSubmit = e => {
-  e.preventDefault(); 
-  postSmurf(smurf)
-}
+  e.preventDefault();
+  props.addSmurf(smurf);
+  setSmurf({
+      name: "",
+      age: "",
+      height:""
+  });
+};
 
   return(
     <form className="form" onSubmit={handleSubmit}>
@@ -31,7 +35,7 @@ const handleSubmit = e => {
         type='text'
         name='name' 
         placeholder="Smurf's Name?"
-        onChange = {handleChange} 
+        onChange = {handleChanges} 
         value={smurf.name}
       />
 
@@ -39,22 +43,21 @@ const handleSubmit = e => {
         type='text'
         name='age' 
         placeholder="Smurf's age!" 
-        onChange={handleChange} 
+        onChange={handleChanges} 
         value={smurf.age}
       />
       <input 
         type='text'
         name='height' 
         placeholder="'Smurf's Height?'" 
-        onChange={handleChange} 
+        onChange={handleChanges} 
         value={smurf.height}
       />
-      <button type="submit"> Add Your New Smurf </button>
+      <button className="submitButton" type="submit"> Add New Smurf </button>
     </form>
   );
 };
-
-export default connect(null, { postSmurf })(Form); 
+export default Form;
 
 // const [smurf, setSmurf] = useState({
 //   name: "",
