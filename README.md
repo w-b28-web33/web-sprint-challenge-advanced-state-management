@@ -23,11 +23,31 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
+
 1. What problem does the context API help solve?
+
+  Prop drilling. COntext API was created to solve the problem related to prop drilling in React. Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+
+
 2. In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+The store is one big container for state. Updating the store is the only way to update state in Redux. The way to updated the store by dispatching a 'action'. An actions are plain javascript objects that contain payloads of information in order to update the store with. The only way to use an actio to update the store in Redux is to dispatch it through a reducer.
+
+A reducer Reducers specify how the application's state changes in response to actions sent to the store. They are functions that take in state and actions, and organize actions in in specfic predefefinded ways before they are sent to the store to update state.
+
 3. What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+Application state is state that will change globally. Component state is state that will only change/is stored locally within that specfic component.
+
 4. Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+Redux Thunk middleware allows you to write action creators that return a function instead of an action. The thunk can be used to delay the dispatch of an action, or to dispatch only if a certain condition is met. an action creator can return a function instead of an action object. This way, the action creator becomes a thunk.
+
+When an action creator returns a function, that function will get executed by the Redux Thunk middleware. This function doesn't need to be pure; it is thus allowed to have side effects, including executing asynchronous API calls.
+
 5. What is your favorite state management system you've learned and this sprint? Please explain why!
+
+I've spent so much time on Redux at this point, I would have to pick it as my favorite simply because I'm so invested.
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade. 
 
